@@ -19,9 +19,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.title = "TempMail"
         view.backgroundColor = .white
         initView()
+        checkForDomains()
         initTable()
         domainsTable.delegate = self
         domainsTable.dataSource = self
@@ -31,12 +31,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        ApiHandler.getDomains { (data) in
-            if let receivedData = data {
-                self.availableDomains = receivedData
-                self.domainsTable.reloadData()
-            }
-        }
+        self.tabBarController?.title = "TempMail"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -124,6 +119,15 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func initTable() {
         domainsTable.register(DomainsViewCell.self, forCellReuseIdentifier: "domainCell")
+    }
+    
+    func checkForDomains() {
+        ApiHandler.getDomains { (data) in
+            if let receivedData = data {
+                self.availableDomains = receivedData
+                self.domainsTable.reloadData()
+            }
+        }
     }
     
     func setEmail(_ emailInput: String) {

@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		AB20B55425939044000D131C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20B55325939044000D131C /* AppDelegate.swift */; };
 		AB20B55625939044000D131C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20B55525939044000D131C /* SceneDelegate.swift */; };
-		AB20B55825939044000D131C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20B55725939044000D131C /* ViewController.swift */; };
-		AB20B55B25939044000D131C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB20B55925939044000D131C /* Main.storyboard */; };
+		AB20B55825939044000D131C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20B55725939044000D131C /* MainViewController.swift */; };
 		AB20B55D25939046000D131C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB20B55C25939046000D131C /* Assets.xcassets */; };
 		AB20B56025939046000D131C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB20B55E25939046000D131C /* LaunchScreen.storyboard */; };
 		CAC7DEAC5D56B3C4FF8E6636 /* Pods_TempMail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749BE666F547C77BE62DE8FE /* Pods_TempMail.framework */; };
@@ -23,8 +22,7 @@
 		AB20B55025939044000D131C /* TempMail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TempMail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB20B55325939044000D131C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB20B55525939044000D131C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AB20B55725939044000D131C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AB20B55A25939044000D131C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AB20B55725939044000D131C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		AB20B55C25939046000D131C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB20B55F25939046000D131C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB20B56125939046000D131C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -48,7 +46,6 @@
 				84C6C53C3CF9B538F271BF1F /* Pods-TempMail.debug.xcconfig */,
 				77068C36F4B88831C2BF209F /* Pods-TempMail.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -81,15 +78,22 @@
 		AB20B55225939044000D131C /* TempMail */ = {
 			isa = PBXGroup;
 			children = (
+				AB20B57125939424000D131C /* ViewControllers */,
 				AB20B55325939044000D131C /* AppDelegate.swift */,
 				AB20B55525939044000D131C /* SceneDelegate.swift */,
-				AB20B55725939044000D131C /* ViewController.swift */,
-				AB20B55925939044000D131C /* Main.storyboard */,
 				AB20B55C25939046000D131C /* Assets.xcassets */,
 				AB20B55E25939046000D131C /* LaunchScreen.storyboard */,
 				AB20B56125939046000D131C /* Info.plist */,
 			);
 			path = TempMail;
+			sourceTree = "<group>";
+		};
+		AB20B57125939424000D131C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AB20B55725939044000D131C /* MainViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,7 +157,6 @@
 			files = (
 				AB20B56025939046000D131C /* LaunchScreen.storyboard in Resources */,
 				AB20B55D25939046000D131C /* Assets.xcassets in Resources */,
-				AB20B55B25939044000D131C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,7 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB20B55825939044000D131C /* ViewController.swift in Sources */,
+				AB20B55825939044000D131C /* MainViewController.swift in Sources */,
 				AB20B55425939044000D131C /* AppDelegate.swift in Sources */,
 				AB20B55625939044000D131C /* SceneDelegate.swift in Sources */,
 			);
@@ -215,14 +218,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		AB20B55925939044000D131C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AB20B55A25939044000D131C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AB20B55E25939046000D131C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

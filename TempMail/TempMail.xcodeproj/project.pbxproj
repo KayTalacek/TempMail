@@ -16,6 +16,7 @@
 		AB20B57A2593AE9B000D131C /* DomainsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20B5792593AE9B000D131C /* DomainsViewCell.swift */; };
 		AB20B57F2593B38F000D131C /* ApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20B57E2593B38F000D131C /* ApiHandler.swift */; };
 		AB20B5972593C1C0000D131C /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20B5962593C1C0000D131C /* DataHandler.swift */; };
+		AB20B59F2593DD2A000D131C /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20B59E2593DD2A000D131C /* ListViewController.swift */; };
 		CAC7DEAC5D56B3C4FF8E6636 /* Pods_TempMail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749BE666F547C77BE62DE8FE /* Pods_TempMail.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		AB20B5792593AE9B000D131C /* DomainsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainsViewCell.swift; sourceTree = "<group>"; };
 		AB20B57E2593B38F000D131C /* ApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHandler.swift; sourceTree = "<group>"; };
 		AB20B5962593C1C0000D131C /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
+		AB20B59E2593DD2A000D131C /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			children = (
 				AB20B55725939044000D131C /* MainViewController.swift */,
 				AB20B57525939F8A000D131C /* TabBarViewController.swift */,
+				AB20B59E2593DD2A000D131C /* ListViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				AB20B55425939044000D131C /* AppDelegate.swift in Sources */,
 				AB20B5972593C1C0000D131C /* DataHandler.swift in Sources */,
 				AB20B57A2593AE9B000D131C /* DomainsViewCell.swift in Sources */,
+				AB20B59F2593DD2A000D131C /* ListViewController.swift in Sources */,
 				AB20B55625939044000D131C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

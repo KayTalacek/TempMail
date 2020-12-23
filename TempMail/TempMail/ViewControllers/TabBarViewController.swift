@@ -25,7 +25,12 @@ class TabBarViewController: UITabBarController {
         mainVC.tabBarItem.selectedImage = UIImage(systemName: "envelope.fill")
         mainVC.tabBarItem.title = "Email"
         
-        viewControllers = [mainVC]
+        let listVC = ListViewController()
+        listVC.tabBarItem.image = UIImage(systemName: "list.bullet")
+        listVC.tabBarItem.selectedImage = UIImage(systemName: "list.bullet.indent")
+        listVC.tabBarItem.title = "Doručené"
+        
+        viewControllers = [mainVC, listVC]
     }
 
 }

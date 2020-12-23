@@ -12,6 +12,10 @@
 		AB20B55825939044000D131C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20B55725939044000D131C /* MainViewController.swift */; };
 		AB20B55D25939046000D131C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB20B55C25939046000D131C /* Assets.xcassets */; };
 		AB20B56025939046000D131C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB20B55E25939046000D131C /* LaunchScreen.storyboard */; };
+		AB20B57625939F8A000D131C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20B57525939F8A000D131C /* TabBarViewController.swift */; };
+		AB20B57A2593AE9B000D131C /* DomainsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20B5792593AE9B000D131C /* DomainsViewCell.swift */; };
+		AB20B57F2593B38F000D131C /* ApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20B57E2593B38F000D131C /* ApiHandler.swift */; };
+		AB20B5972593C1C0000D131C /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20B5962593C1C0000D131C /* DataHandler.swift */; };
 		CAC7DEAC5D56B3C4FF8E6636 /* Pods_TempMail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749BE666F547C77BE62DE8FE /* Pods_TempMail.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +30,10 @@
 		AB20B55C25939046000D131C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB20B55F25939046000D131C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB20B56125939046000D131C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB20B57525939F8A000D131C /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		AB20B5792593AE9B000D131C /* DomainsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainsViewCell.swift; sourceTree = "<group>"; };
+		AB20B57E2593B38F000D131C /* ApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHandler.swift; sourceTree = "<group>"; };
+		AB20B5962593C1C0000D131C /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,10 @@
 		AB20B55225939044000D131C /* TempMail */ = {
 			isa = PBXGroup;
 			children = (
+				AB20B5952593C1B2000D131C /* Data Handler */,
+				AB20B5812593B561000D131C /* Mapper Classes */,
+				AB20B57D2593B373000D131C /* Api Handlers */,
+				AB20B5782593AE49000D131C /* Cells */,
 				AB20B57125939424000D131C /* ViewControllers */,
 				AB20B55325939044000D131C /* AppDelegate.swift */,
 				AB20B55525939044000D131C /* SceneDelegate.swift */,
@@ -92,8 +104,40 @@
 			isa = PBXGroup;
 			children = (
 				AB20B55725939044000D131C /* MainViewController.swift */,
+				AB20B57525939F8A000D131C /* TabBarViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		AB20B5782593AE49000D131C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AB20B5792593AE9B000D131C /* DomainsViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		AB20B57D2593B373000D131C /* Api Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				AB20B57E2593B38F000D131C /* ApiHandler.swift */,
+			);
+			path = "Api Handlers";
+			sourceTree = "<group>";
+		};
+		AB20B5812593B561000D131C /* Mapper Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Mapper Classes";
+			sourceTree = "<group>";
+		};
+		AB20B5952593C1B2000D131C /* Data Handler */ = {
+			isa = PBXGroup;
+			children = (
+				AB20B5962593C1C0000D131C /* DataHandler.swift */,
+			);
+			path = "Data Handler";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,8 +253,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB20B57625939F8A000D131C /* TabBarViewController.swift in Sources */,
+				AB20B57F2593B38F000D131C /* ApiHandler.swift in Sources */,
 				AB20B55825939044000D131C /* MainViewController.swift in Sources */,
 				AB20B55425939044000D131C /* AppDelegate.swift in Sources */,
+				AB20B5972593C1C0000D131C /* DataHandler.swift in Sources */,
+				AB20B57A2593AE9B000D131C /* DomainsViewCell.swift in Sources */,
 				AB20B55625939044000D131C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

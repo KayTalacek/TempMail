@@ -144,6 +144,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             if itsOkay {
                 setEmail(input)
                 DataHandler.saveEmail(input)
+                let hash = input.md5()
+                DataHandler.saveEmailHash(hash)
                 emailInput.text = ""
             } else {
                 badEmail()

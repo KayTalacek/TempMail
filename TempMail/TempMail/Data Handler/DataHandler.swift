@@ -6,23 +6,29 @@
 //
 
 import Foundation
-import CryptoSwift
 
 class DataHandler {
     static let defaults = UserDefaults.standard
 
+<<<<<<< Updated upstream
     static func saveEmail(_ value: String) {
         defaults.set(value, forKey: "temporaryEmail")
-        saveEmailHash(value)
+=======
+    static func saveEmail(email: String, key: String) {
+        defaults.set(email, forKey: "temporaryEmail")
+        saveEmailKey(key)
+>>>>>>> Stashed changes
     }
     static func getEmail() -> String {
         return defaults.object(forKey: "temporaryEmail") as? String ?? ""
     }
-    static func saveEmailHash(_ value: String) {
-        let hash = value.md5()
-        defaults.set(hash, forKey: "temporaryEmailHash")
+<<<<<<< Updated upstream
+=======
+    static func saveEmailKey(_ key: String) {
+        defaults.set(key, forKey: "temporaryEmailKey")
     }
-    static func getEmailHash() -> String {
-        return defaults.object(forKey: "temporaryEmailHash") as? String ?? ""
+    static func getEmailKey() -> String {
+        return defaults.object(forKey: "temporaryEmailKey") as? String ?? ""
     }
+>>>>>>> Stashed changes
 }

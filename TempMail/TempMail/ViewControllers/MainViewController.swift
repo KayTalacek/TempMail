@@ -146,20 +146,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 itsOkay = true
             }
             if itsOkay {
-<<<<<<< Updated upstream
-                setEmail(input)
-                DataHandler.saveEmail(input)
-                let hash = input.md5()
-                DataHandler.saveEmailHash(hash)
-                emailInput.text = ""
-=======
                 ApiHandler.createMail(domain: input) { (data) in
                     if let newEmail = data {
                         self.setEmail(newEmail)
                         self.emailInput.text = ""
                     }
                 }
->>>>>>> Stashed changes
             } else {
                 badEmail()
             }

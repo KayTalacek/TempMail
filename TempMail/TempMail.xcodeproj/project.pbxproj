@@ -17,6 +17,10 @@
 		AB20B57F2593B38F000D131C /* ApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20B57E2593B38F000D131C /* ApiHandler.swift */; };
 		AB20B5972593C1C0000D131C /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20B5962593C1C0000D131C /* DataHandler.swift */; };
 		AB20B59F2593DD2A000D131C /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB20B59E2593DD2A000D131C /* ListViewController.swift */; };
+		AB2BFA002594DEC900B878DA /* EmailsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2BF9FF2594DEC900B878DA /* EmailsViewCell.swift */; };
+		AB2BFA03259762C500B878DA /* EmailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2BFA02259762C500B878DA /* EmailData.swift */; };
+		AB2BFA0625976A2A00B878DA /* Emails.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2BFA0525976A2A00B878DA /* Emails.swift */; };
+		AB2BFA172597DA6500B878DA /* EmailKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2BFA162597DA6500B878DA /* EmailKey.swift */; };
 		CAC7DEAC5D56B3C4FF8E6636 /* Pods_TempMail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749BE666F547C77BE62DE8FE /* Pods_TempMail.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +40,10 @@
 		AB20B57E2593B38F000D131C /* ApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHandler.swift; sourceTree = "<group>"; };
 		AB20B5962593C1C0000D131C /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		AB20B59E2593DD2A000D131C /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		AB2BF9FF2594DEC900B878DA /* EmailsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailsViewCell.swift; sourceTree = "<group>"; };
+		AB2BFA02259762C500B878DA /* EmailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailData.swift; sourceTree = "<group>"; };
+		AB2BFA0525976A2A00B878DA /* Emails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emails.swift; sourceTree = "<group>"; };
+		AB2BFA162597DA6500B878DA /* EmailKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				AB20B5792593AE9B000D131C /* DomainsViewCell.swift */,
+				AB2BF9FF2594DEC900B878DA /* EmailsViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -131,6 +140,9 @@
 		AB20B5812593B561000D131C /* Mapper Classes */ = {
 			isa = PBXGroup;
 			children = (
+				AB2BFA02259762C500B878DA /* EmailData.swift */,
+				AB2BFA0525976A2A00B878DA /* Emails.swift */,
+				AB2BFA162597DA6500B878DA /* EmailKey.swift */,
 			);
 			path = "Mapper Classes";
 			sourceTree = "<group>";
@@ -257,12 +269,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB20B57625939F8A000D131C /* TabBarViewController.swift in Sources */,
+				AB2BFA0625976A2A00B878DA /* Emails.swift in Sources */,
+				AB2BFA172597DA6500B878DA /* EmailKey.swift in Sources */,
 				AB20B57F2593B38F000D131C /* ApiHandler.swift in Sources */,
+				AB2BFA03259762C500B878DA /* EmailData.swift in Sources */,
 				AB20B55825939044000D131C /* MainViewController.swift in Sources */,
 				AB20B55425939044000D131C /* AppDelegate.swift in Sources */,
 				AB20B5972593C1C0000D131C /* DataHandler.swift in Sources */,
 				AB20B57A2593AE9B000D131C /* DomainsViewCell.swift in Sources */,
 				AB20B59F2593DD2A000D131C /* ListViewController.swift in Sources */,
+				AB2BFA002594DEC900B878DA /* EmailsViewCell.swift in Sources */,
 				AB20B55625939044000D131C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,24 +7,28 @@
 
 import UIKit
 import SnapKit
-import CryptoSwift
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
     
     let email = UILabel()
     let emailInput = UITextField()
+    let emailPicker = UIPickerView()
+    let setBTN = UIButton()
     let domainsTable = UITableView()
     
-    var availableDomains : [String] = []
+    var newEmail: EmailKey?
+    var availableDomains: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        initView()
         checkForDomains()
+        initView()
         initTable()
         domainsTable.delegate = self
         domainsTable.dataSource = self
+        emailPicker.delegate = self
+        emailPicker.dataSource = self
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
     }
@@ -41,12 +45,47 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = domainsTable.dequeueReusableCell(withIdentifier: "domainCell", for: indexPath) as! DomainsViewCell
         cell.textLabel?.text = availableDomains[indexPath.row]
+        cell.backgroundColor = .white
+        cell.textLabel?.textColor = .black
         cell.selectionStyle = .none
         return cell
     }
     
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        availableDomains.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return availableDomains[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        emailInput.text = availableDomains[row]
+    }
+    
     func initView() {
         let padding = 30
+        
+        view.addSubview(emailInput)
+        emailInput.layer.borderWidth = 1
+        emailInput.attributedPlaceholder = NSAttributedString(string: "Vyberte doménu...", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        emailInput.inputView = emailPicker
+        emailInput.layer.cornerRadius = 8
+        emailInput.textColor = .black
+        emailInput.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: emailInput.frame.height))
+        emailInput.leftViewMode = .always
+        emailInput.keyboardType = .emailAddress
+        emailInput.snp.makeConstraints { (make) in
+            make.bottom.equalTo(self.view.snp.centerY)
+            make.left.equalTo(self.view).offset(padding)
+            make.right.equalTo(self.view).offset(-padding)
+            make.height.equalTo(30)
+        }
+        
         let savedEmail = DataHandler.getEmail()
         if savedEmail == "" {
             email.text = "Nebyl nastaven žádný email"
@@ -55,66 +94,27 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             setEmail(savedEmail)
         }
         email.textAlignment = .center
-        email.font = UIFont.boldSystemFont(ofSize: 24)
+        email.font = UIFont.boldSystemFont(ofSize: 20)
         view.addSubview(email)
         email.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(padding)
             make.right.equalTo(self.view).offset(-padding)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.top).offset(170)
+            make.bottom.equalTo(emailInput.snp.top).offset(-padding)
             make.height.equalTo(50)
         }
-        
-        let setBTN = UIButton()
-        setBTN.setImage(UIImage(systemName: "arrow.right.circle.fill"),for: .normal)
+
+        setBTN.setTitle("Vytvořit email", for: .normal)
+        setBTN.backgroundColor = .systemBlue
+        setBTN.layer.cornerRadius = 8
+        setBTN.addTarget(self, action: #selector(btnDown(sender:)), for: .touchDown)
         setBTN.addTarget(self, action: #selector(btnWorker(sender:)), for: .touchUpInside)
         view.addSubview(setBTN)
         setBTN.snp.makeConstraints { (make) in
-            make.top.equalTo(email.snp.bottom)
-            make.right.equalTo(self.view).offset(-padding)
-            make.height.width.equalTo(padding)
+            make.top.equalTo(self.view.snp.centerY).offset(padding)
+            make.left.equalTo(self.view.snp.left).offset(padding)
+            make.right.equalTo(self.view.snp.right).offset(-padding)
+            make.height.equalTo(40)
         }
-
-        view.addSubview(emailInput)
-        emailInput.layer.borderWidth = 1
-        emailInput.placeholder = "Zadejte email..."
-        emailInput.layer.cornerRadius = 8
-        emailInput.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: emailInput.frame.height))
-        emailInput.leftViewMode = .always
-        emailInput.keyboardType = .emailAddress
-        emailInput.snp.makeConstraints { (make) in
-            make.top.equalTo(email.snp.bottom)
-            make.left.equalTo(self.view).offset(padding)
-            make.right.equalTo(setBTN.snp.left)
-            make.height.equalTo(30)
-        }
-        
-        let domainsLabel = UILabel()
-        domainsLabel.text = "Dostupné domény:"
-        view.addSubview(domainsLabel)
-        domainsLabel.snp.makeConstraints { (make) in
-            make.centerY.equalTo(self.view)
-            make.left.equalTo(self.view).offset(padding)
-            make.right.equalTo(self.view).offset(-padding)
-            make.height.equalTo(20)
-        }
-        
-        let domainsTableView = UIView()
-        domainsTableView.layer.cornerRadius = 8
-        domainsTableView.layer.borderWidth = 1
-        domainsTableView.layer.borderColor = UIColor(named: "black")?.cgColor
-        view.addSubview(domainsTableView)
-        domainsTableView.snp.makeConstraints { (make) in
-            make.top.equalTo(domainsLabel.snp.bottom).offset(5)
-            make.left.equalTo(self.view).offset(padding)
-            make.right.equalTo(self.view).offset(-padding)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-padding)
-        }
-        
-        domainsTableView.addSubview(domainsTable)
-        domainsTable.snp.makeConstraints { (make) in
-            make.edges.equalTo(domainsTableView)
-        }
-        
     }
     
     func initTable() {
@@ -124,7 +124,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func checkForDomains() {
         ApiHandler.getDomains { (data) in
             if let receivedData = data {
-                self.availableDomains = receivedData
+                self.availableDomains.append(contentsOf: receivedData)
                 self.domainsTable.reloadData()
             }
         }
@@ -135,6 +135,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         email.textColor = .black
     }
     
+    @objc func btnDown(sender: UIButton) {
+        setBTN.backgroundColor = UIColor(red: 0, green: 0.4, blue: 0.7, alpha: 1)
+    }
+    
     @objc func btnWorker(sender: UIButton) {
         if let input = emailInput.text {
             var itsOkay = false
@@ -142,22 +146,30 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 itsOkay = true
             }
             if itsOkay {
+<<<<<<< Updated upstream
                 setEmail(input)
                 DataHandler.saveEmail(input)
                 emailInput.text = ""
+=======
+                ApiHandler.createMail(domain: input) { (data) in
+                    if let newEmail = data {
+                        self.setEmail(newEmail)
+                        self.emailInput.text = ""
+                    }
+                }
+>>>>>>> Stashed changes
             } else {
                 badEmail()
             }
         }
+        setBTN.backgroundColor = .systemBlue
     }
     
     func badEmail() {
         let error = UIAlertController(title: "Ouha!", message: "Zadejte, prosím, platnou doménu.", preferredStyle: .alert)
-
         error.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
         }))
         self.present(error, animated: true, completion: nil)
     }
-    
 }
 

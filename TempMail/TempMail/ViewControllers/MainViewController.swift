@@ -29,7 +29,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(white: 0.9, alpha: 1)
         checkForDomains()
         initView(padding: 30)
         initTable()
@@ -53,7 +53,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = domainsTable.dequeueReusableCell(withIdentifier: "domainCell", for: indexPath) as! DomainsViewCell
         cell.textLabel?.text = availableDomains[indexPath.row]
-        cell.backgroundColor = .white
+        cell.backgroundColor = UIColor(white: 0.9, alpha: 1)
         cell.textLabel?.textColor = .black
         cell.selectionStyle = .none
         return cell
@@ -265,6 +265,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @objc func btnDown(sender: UIButton) {
         generateBTN.backgroundColor = UIColor(red: 0, green: 0.4, blue: 0.7, alpha: 1)
+        setBTN.backgroundColor = UIColor(red: 0, green: 0.4, blue: 0.7, alpha: 1)
     }
     
     @objc func generateEmail(sender: UIButton) {
@@ -304,7 +305,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 badEmail()
             }
         }
-        generateBTN.backgroundColor = .systemBlue
+        setBTN.backgroundColor = .systemBlue
     }
     
     func badEmail() {

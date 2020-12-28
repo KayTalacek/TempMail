@@ -10,10 +10,6 @@ import Foundation
 class DataHandler {
     static let defaults = UserDefaults.standard
 
-    static func saveEmail(_ value: String) {
-        defaults.set(value, forKey: "temporaryEmail")
-    }
-
     static func saveEmail(email: String, key: String) {
         defaults.set(email, forKey: "temporaryEmail")
         saveEmailKey(key)

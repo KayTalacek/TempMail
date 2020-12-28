@@ -74,17 +74,26 @@ class ApiHandler {
     }
     
     static func getSingleEmail(messageID: String, completion: @escaping (String?) -> Void) {
-        let email = DataHandler.getEmail()
-        AF.request("https://temp-mail22.p.rapidapi.com/read?email=\(email)&message_id=\(messageID)", method: .get, encoding: URLEncoding.default, headers: headers).responseJSON {response in
-            switch response.result {
-            case .success(let data as [String : Any]):
-                if let receivedData = SingleEmailBody(JSON: data){
-                    if let message = receivedData.body {
-                        completion(message)
+        let msgCache = NSCache<NSString,NSString>()
+        if let cachedMsg = msgCache.object(forKey: NSString(string: messageID)) {
+            print("Nacteno z cache")
+            completion(cachedMsg as String)
+        } else {
+            let email = DataHandler.getEmail()
+
+            AF.request("https://temp-mail22.p.rapidapi.com/read?email=\(email)&message_id=\(messageID)", method: .get, encoding: URLEncoding.default, headers: headers).responseJSON {response in
+                switch response.result {
+                case .success(let data as [String : Any]):
+                    if let receivedData = SingleEmailBody(JSON: data){
+                        if let message = receivedData.body {
+                            print("Stahuji zpravu")
+                            msgCache.setObject(NSString(string: message), forKey: NSString(string: messageID))
+                            completion(message)
+                        }
                     }
+                default:
+                    break
                 }
-            default:
-                break
             }
         }
     }

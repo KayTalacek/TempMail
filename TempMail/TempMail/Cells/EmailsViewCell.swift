@@ -38,7 +38,7 @@ class EmailsViewCell: UITableViewCell {
         roundedRectView.layer.shadowOffset = .zero
         roundedRectView.layer.shadowRadius = 5
         roundedRectView.layer.cornerRadius = 5
-        roundedRectView.backgroundColor = .white
+        roundedRectView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         roundedRectView.frame = CGRect(x: padding, y: padding, width: frame.width - 2 * padding, height: frame.height - 2 * padding)
         roundedRectView.snp.makeConstraints { (make) in
             make.top.equalTo(contentView).offset(5)
@@ -82,12 +82,11 @@ class EmailsViewCell: UITableViewCell {
         }
         
         mainView.addSubview(snippetLabel)
-        snippetLabel.textColor = .darkGray
-        snippetLabel.numberOfLines = 0
-        snippetLabel.lineBreakMode = .byWordWrapping
+        snippetLabel.textColor = .lightGray
+        snippetLabel.textAlignment = .center
         snippetLabel.font = snippetLabel.font.withSize(14)
         snippetLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(subjectLabel.snp.bottom)
+            make.top.equalTo(subjectLabel.snp.bottom).offset(padding)
             make.right.equalTo(mainView.snp.right)
             make.left.equalTo(mainView.snp.left)
             make.bottom.equalTo(mainView.snp.bottom)
@@ -98,19 +97,13 @@ class EmailsViewCell: UITableViewCell {
         let passedVal = data
         
         if let sender = passedVal.sender{
-            senderLabel.text = sender
-            print("LOGsender: \(sender)")
+            senderLabel.text = sender.replacingOccurrences(of: "\"", with: "")
         }
         
         if let subject = passedVal.subject {
             subjectLabel.text = subject
-            print("LOGsubject: \(subject)")
         }
         
-        if let snippet = passedVal.textSnippet {
-            snippetLabel.text = snippet
-            print("LOGsnippet: \(snippet)")
-        }
+        snippetLabel.text = "Klikněte pro zobrazení zprávy"
     }
-
 }

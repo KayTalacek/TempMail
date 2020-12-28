@@ -9,17 +9,29 @@ import UIKit
 
 class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    let noEmails = UILabel()
     let refreshTable = UIRefreshControl()
     let emailsTable = UITableView()
     var allEmails: [EmailData] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(white: 0.9, alpha: 1)
+        
+        noEmails.isHidden = true
+        noEmails.textAlignment = .center
+        noEmails.text = "Vaše schránka je prázdná"
+        noEmails.textColor = .gray
+        view.addSubview(noEmails)
+        noEmails.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.view)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(50)
+            make.left.right.equalTo(self.view)
+        }
                 
         view.addSubview(emailsTable)
         emailsTable.register(EmailsViewCell.self, forCellReuseIdentifier: "emailCell")
-        emailsTable.backgroundColor = UIColor(named: "listBg")
+        emailsTable.backgroundColor = .none
         emailsTable.separatorStyle = .none
         emailsTable.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
         self.emailsTable.estimatedRowHeight = 150
@@ -31,7 +43,6 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         loadData()
         
-        refreshTable.attributedTitle = NSAttributedString(string: "Potáhnout dolů pro aktualizaci", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         refreshTable.tintColor = .blue
         refreshTable.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         emailsTable.addSubview(refreshTable) // not required when using UITableViewController
@@ -58,6 +69,13 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = SingleEmailViewController()
+        vc.passData(data: allEmails[indexPath.row])
+//        vc.navigationItem.title = allEmails[indexPath.row].subject
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 //    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 //        let deleteMessage = UIContextualAction(style: .normal, title: "Urgentní\nzpráva OL") {
 //            [weak self] (action, view, completionHandler) in
@@ -78,21 +96,30 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func loadData() {
+        
         ApiHandler.getEmails { (data) in
             if let code = data?.code {
                 if code != 200 {
                     self.expiredKey()
+                    self.emailsTable.reloadData()
                 }
             }
-
-            if let receivedEmails = data?.emails {
-                self.allEmails = receivedEmails
-                self.emailsTable.reloadData()
-                if self.refreshTable.isRefreshing {
-                    self.refreshTable.endRefreshing()
+            if data?.emails?.count == 0 {
+                self.noEmails.isHidden = false
+            } else {
+                if !self.noEmails.isHidden {
+                    self.noEmails.isHidden = true
                 }
+                if let receivedEmails = data?.emails {
+                    self.allEmails = receivedEmails
+                    self.emailsTable.reloadData()
+                }
+            }
+            if self.refreshTable.isRefreshing {
+                self.refreshTable.endRefreshing()
             }
         }
+        
     }
     
     @objc func reload(_ sender: UIBarButtonItem) {

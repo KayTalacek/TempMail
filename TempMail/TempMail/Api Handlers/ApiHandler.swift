@@ -86,7 +86,7 @@ class ApiHandler {
                 case .success(let data as [String : Any]):
                     if let receivedData = SingleEmailBody(JSON: data){
                         if let message = receivedData.body {
-                            print("Stahuji zpravu")
+                            print("Stahuji zpravu\(NSString(string: message))")
                             msgCache.setObject(NSString(string: message), forKey: NSString(string: messageID))
                             completion(message)
                         }

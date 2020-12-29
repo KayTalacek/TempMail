@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 import ObjectMapper
 import ProgressHUD
+import Cache
 
 class ApiHandler {
     
@@ -18,8 +19,6 @@ class ApiHandler {
     ]
     
     static func getDomains(completion: @escaping ([String]?) -> Void) {
-        ProgressHUD.animationType = .circleSpinFade
-        ProgressHUD.colorAnimation = .blue
         ProgressHUD.show()
         AF.request("https://temp-mail22.p.rapidapi.com/domains", method: .get, encoding: URLEncoding.default, headers: headers).responseJSON {response in
             switch response.result {
@@ -57,7 +56,6 @@ class ApiHandler {
         }
     }
     
-//    kontrolovat pocet emailu
     static func getEmails(completion: @escaping (Emails?) -> Void) {
         let email = DataHandler.getEmail()
         let key = DataHandler.getEmailKey()
@@ -74,20 +72,19 @@ class ApiHandler {
     }
     
     static func getSingleEmail(messageID: String, completion: @escaping (String?) -> Void) {
-        let msgCache = NSCache<NSString,NSString>()
-        if let cachedMsg = msgCache.object(forKey: NSString(string: messageID)) {
-            print("Nacteno z cache")
-            completion(cachedMsg as String)
+        let cachedMsg = CacheHandler.getCachedMessage(emailID: messageID)
+        if cachedMsg != "null" {
+            completion(cachedMsg)
         } else {
             let email = DataHandler.getEmail()
-
+            ProgressHUD.show()
             AF.request("https://temp-mail22.p.rapidapi.com/read?email=\(email)&message_id=\(messageID)", method: .get, encoding: URLEncoding.default, headers: headers).responseJSON {response in
                 switch response.result {
                 case .success(let data as [String : Any]):
                     if let receivedData = SingleEmailBody(JSON: data){
                         if let message = receivedData.body {
-                            print("Stahuji zpravu\(NSString(string: message))")
-                            msgCache.setObject(NSString(string: message), forKey: NSString(string: messageID))
+                            CacheHandler.cacheMessage(emailID: messageID, message: message)
+                            ProgressHUD.dismiss()
                             completion(message)
                         }
                     }

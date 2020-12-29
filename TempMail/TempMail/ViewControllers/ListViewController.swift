@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -25,7 +26,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         view.addSubview(noEmails)
         noEmails.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.view)
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(50)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(60)
             make.left.right.equalTo(self.view)
         }
                 
@@ -40,8 +41,9 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
-        
+        ProgressHUD.show()
         loadData()
+        
         
         refreshTable.tintColor = .blue
         refreshTable.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
@@ -54,8 +56,6 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.title = "Doručené"
-        let rightBTN = UIBarButtonItem(image: UIImage(systemName: "person.circle.fill"), style: .plain, target: self, action: #selector(reload(_:)))
-        navigationController?.navigationItem.rightBarButtonItem = rightBTN
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -118,12 +118,9 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             if self.refreshTable.isRefreshing {
                 self.refreshTable.endRefreshing()
             }
+            ProgressHUD.dismiss()
         }
         
-    }
-    
-    @objc func reload(_ sender: UIBarButtonItem) {
-        loadData()
     }
     
     func expiredKey() {

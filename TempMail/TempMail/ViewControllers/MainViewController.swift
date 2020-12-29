@@ -116,7 +116,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let attributedTitle = NSAttributedString(string: "Kopírovat", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
         copyBTN.setAttributedTitle(attributedTitle, for: .normal)
         copyBTN.layer.cornerRadius = 8
-        copyBTN.backgroundColor = .link
+        copyBTN.backgroundColor = .systemBlue
+        copyBTN.addTarget(self, action: #selector(btnDown(sender:)), for: .touchDown)
         copyBTN.addTarget(self, action: #selector(copyToClipboard(sender:)), for: .touchUpInside)
         view.addSubview(copyBTN)
         copyBTN.snp.makeConstraints { (make) in
@@ -225,6 +226,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @objc func copyToClipboard(sender: UIButton) {
         UIPasteboard.general.string = email.text
+        sender.backgroundColor = .systemBlue
     }
     
     @objc func setOption(sender: UISegmentedControl) {
@@ -264,8 +266,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc func btnDown(sender: UIButton) {
-        generateBTN.backgroundColor = UIColor(red: 0, green: 0.4, blue: 0.7, alpha: 1)
-        setBTN.backgroundColor = UIColor(red: 0, green: 0.4, blue: 0.7, alpha: 1)
+        sender.backgroundColor = UIColor(red: 0, green: 0.4, blue: 0.7, alpha: 1)
     }
     
     @objc func generateEmail(sender: UIButton) {
@@ -285,7 +286,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 badEmail()
             }
         }
-        generateBTN.backgroundColor = .systemBlue
+        sender.backgroundColor = .systemBlue
     }
     
     @objc func restoreEmail(sender: UIButton) {
@@ -305,7 +306,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 badEmail()
             }
         }
-        setBTN.backgroundColor = .systemBlue
+        sender.backgroundColor = .systemBlue
     }
     
     func badEmail() {

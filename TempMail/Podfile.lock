@@ -1,11 +1,13 @@
 PODS:
   - Alamofire (5.4.1)
+  - Cache (6.0.0)
   - ObjectMapper (3.5.3)
   - ProgressHUD (13.4)
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
+  - Cache
   - ObjectMapper (~> 3.5)
   - ProgressHUD
   - SnapKit (~> 5.0.0)
@@ -13,16 +15,18 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Cache
     - ObjectMapper
     - ProgressHUD
     - SnapKit
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  Cache: 4ca7e00363fca5455f26534e5607634c820ffc2d
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
   ProgressHUD: 137a7fc677487c5581668f4490563124fb35c232
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: a1890b3898e0f14a9e6572acf9f18c446493acd3
+PODFILE CHECKSUM: 3f8602aaa62b092333267fe6426e47aca9eb35f7
 
 COCOAPODS: 1.10.0

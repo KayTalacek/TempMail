@@ -15,13 +15,18 @@ class AboutViewController: UIViewController {
         initView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.title = "O aplikaci"
+    }
+    
     func initView() {
         let infoLabel = UILabel()
         infoLabel.numberOfLines = 0
         infoLabel.textColor = .black
         infoLabel.lineBreakMode = .byWordWrapping
         infoLabel.textAlignment = .center
-        infoLabel.font = UIFont(name: "AppleSDGothicNeo-Ultra-Light ", size: 40)
+        infoLabel.font = UIFont.systemFont(ofSize: 25, weight: .ultraLight)
         infoLabel.text = "Vytvořil Bc. Lukáš Talacek (2020)\n\nv rámci své semestrální práce\n\ndo předmětu AK7MT"
         view.addSubview(infoLabel)
         infoLabel.snp.makeConstraints { (make) in
@@ -30,14 +35,17 @@ class AboutViewController: UIViewController {
             make.right.equalTo(self.view).offset(-30)
             make.height.equalTo(self.view.frame.width)
         }
+        
+        let titleLabel = UILabel()
+        titleLabel.text = "TempMail"
+        titleLabel.textColor = .black
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont.systemFont(ofSize: 40, weight: .black)
+        view.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { (make) in
+            make.bottom.equalTo(infoLabel.snp.top)
+            make.left.equalTo(self.view).offset(30)
+            make.right.equalTo(self.view).offset(-30)
+        }
     }
 }
-
-//<section style="text-align:center; margin-top: 100px;">
-//  <ion-label>
-//    Vytvořil Lukáš Talacek (2020) <br>
-//    v rámci své semestrální práce. <br><br>
-//  </ion-label>
-//  <ion-label>
-//    Aplikace využívá API temp-mail.org
-//  </ion-label>

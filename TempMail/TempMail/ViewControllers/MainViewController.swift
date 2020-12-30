@@ -80,6 +80,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         segmented.selectedSegmentIndex = 0
         segmented.layer.cornerRadius = 8
         segmented.backgroundColor = .lightGray
+        segmented.tintColor = .white
         segmented.layer.borderColor = UIColor.gray.cgColor
         segmented.layer.borderWidth = 2
         segmented.selectedSegmentTintColor = .systemBlue
@@ -115,6 +116,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         copyBTN.setTitle("Kopírovat", for: .normal)
         let attributedTitle = NSAttributedString(string: "Kopírovat", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
         copyBTN.setAttributedTitle(attributedTitle, for: .normal)
+        copyBTN.tintColor = .white
         copyBTN.layer.cornerRadius = 8
         copyBTN.backgroundColor = .systemBlue
         copyBTN.addTarget(self, action: #selector(btnDown(sender:)), for: .touchDown)

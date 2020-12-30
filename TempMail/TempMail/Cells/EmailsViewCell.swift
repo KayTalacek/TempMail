@@ -13,6 +13,7 @@ class EmailsViewCell: UITableViewCell {
     let roundedRectView = UIView()
     let mainView = UIView()
     let arrowImg = UIImageView()
+    let timeLabel = UILabel()
     let senderLabel = UILabel()
     let subjectLabel = UILabel()
     let snippetLabel = UILabel()
@@ -72,6 +73,14 @@ class EmailsViewCell: UITableViewCell {
             make.height.equalTo(15)
         }
         
+        timeLabel.font = timeLabel.font.withSize(14)
+        timeLabel.textColor = .gray
+        mainView.addSubview(timeLabel)
+        timeLabel.snp.makeConstraints { (make) in
+            make.right.equalTo(arrowImg.snp.left).offset(-5)
+            make.centerY.equalTo(arrowImg)
+        }
+        
         mainView.addSubview(subjectLabel)
         subjectLabel.textColor = .darkGray
         subjectLabel.font = subjectLabel.font.withSize(15)
@@ -102,6 +111,22 @@ class EmailsViewCell: UITableViewCell {
         
         if let subject = passedVal.subject {
             subjectLabel.text = subject
+        }
+        
+        if let sentAtRaw = passedVal.date {
+            let dateFormatterGet = DateFormatter()
+            dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
+            let dateFormatterPrint = DateFormatter()
+            dateFormatterPrint.dateFormat = "HH:mm"
+
+            if let sent = dateFormatterGet.date(from: sentAtRaw) {
+                if let sentMod = Calendar.current.date(byAdding: .hour, value: -6, to: sent) {
+                    timeLabel.text = dateFormatterPrint.string(from: sentMod)
+                }
+            } else {
+                print("There was an error decoding the date of birth.")
+            }
         }
         
         snippetLabel.text = "Klikněte pro zobrazení zprávy"

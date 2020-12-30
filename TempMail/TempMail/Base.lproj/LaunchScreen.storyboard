@@ -29,7 +29,7 @@
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="TempMail" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xo8-R7-YsA">
-                                <rect key="frame" x="87" y="436" width="240" height="182"/>
+                                <rect key="frame" x="0.0" y="436" width="414" height="182"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="45"/>
@@ -42,11 +42,11 @@
                             <constraint firstItem="xo8-R7-YsA" firstAttribute="top" secondItem="UIg-o7-BBH" secondAttribute="bottom" id="4Bs-Xg-tS3"/>
                             <constraint firstItem="UIg-o7-BBH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="250" id="EDa-w3-FRm"/>
                             <constraint firstAttribute="bottom" secondItem="VwO-ob-f2V" secondAttribute="bottom" id="HGA-Qo-tyJ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xo8-R7-YsA" secondAttribute="trailing" constant="87" id="IyV-FK-XLL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xo8-R7-YsA" secondAttribute="trailing" id="IyV-FK-XLL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UIg-o7-BBH" secondAttribute="trailing" constant="135" id="JNE-J1-Mtd"/>
                             <constraint firstItem="VwO-ob-f2V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PZZ-gm-zeo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xo8-R7-YsA" secondAttribute="bottom" constant="244" id="Sdh-Xt-QPV"/>
-                            <constraint firstItem="xo8-R7-YsA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="fiT-vo-VG5"/>
+                            <constraint firstItem="xo8-R7-YsA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fiT-vo-VG5"/>
                             <constraint firstItem="UIg-o7-BBH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="136" id="l23-kK-cSv"/>
                             <constraint firstItem="VwO-ob-f2V" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="mc3-EL-hAH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VwO-ob-f2V" secondAttribute="trailing" id="xD2-1Y-6aS"/>

@@ -12,7 +12,7 @@ class EmailData: Mappable {
     var id: String?
     var sender: String?
     var subject: String?
-    var textSnippet: String?
+    var date: String?
     
     required init?(map: Map) {
     }
@@ -21,6 +21,6 @@ class EmailData: Mappable {
         id <- map["mid"]
         sender <- map["textFrom"]
         subject <- map["textSubject"]
-        textSnippet <- map["textSnippet"]
+        date <- map["textDate"]
     }
 }

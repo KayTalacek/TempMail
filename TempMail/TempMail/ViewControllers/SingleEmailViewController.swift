@@ -12,6 +12,7 @@ class SingleEmailViewController: UIViewController {
     let senderSubjectView = UIView()
     let senderLabel = UILabel()
     let subjectLabel = UILabel()
+    let timeLabel = UILabel()
     let messageField = UITextView()
     
     override func viewDidLoad() {
@@ -32,15 +33,25 @@ class SingleEmailViewController: UIViewController {
             make.height.equalTo(height*5/2)
         }
         
+        timeLabel.font = timeLabel.font.withSize(18)
+        timeLabel.textColor = .gray
+        senderSubjectView.addSubview(timeLabel)
+        timeLabel.snp.makeConstraints { (make) in
+            make.right.equalTo(senderSubjectView.snp.right).offset(-padding)
+            make.top.equalTo(senderSubjectView.snp.top).offset(padding)
+            make.height.equalTo(height)
+        }
+        
         senderSubjectView.addSubview(senderLabel)
         senderLabel.textColor = .black
         senderLabel.font = UIFont.boldSystemFont(ofSize: 20)
         senderLabel.snp.makeConstraints { (make) in
             make.top.equalTo(senderSubjectView.snp.top).offset(padding)
             make.left.equalTo(senderSubjectView).offset(padding)
-            make.right.equalTo(senderSubjectView).offset(-padding)
+//            make.right.equalTo(timeLabel.snp.left).offset(-padding)
             make.height.equalTo(height)
         }
+        
         
         senderSubjectView.addSubview(subjectLabel)
         subjectLabel.textColor = .black
@@ -53,6 +64,7 @@ class SingleEmailViewController: UIViewController {
         
         view.addSubview(messageField)
         messageField.backgroundColor = .none
+        messageField.isEditable = false
         messageField.textColor = .black
         messageField.snp.makeConstraints { (make) in
             make.top.equalTo(senderSubjectView.snp.bottom)
@@ -72,6 +84,23 @@ class SingleEmailViewController: UIViewController {
             if let subject = data.subject {
                 subjectLabel.text = "Předmět: \(subject)"
             }
+            
+            if let sentAtRaw = data.date {
+                let dateFormatterGet = DateFormatter()
+                dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
+                let dateFormatterPrint = DateFormatter()
+                dateFormatterPrint.dateFormat = "HH:mm"
+
+                if let sent = dateFormatterGet.date(from: sentAtRaw) {
+                    if let sentMod = Calendar.current.date(byAdding: .hour, value: -6, to: sent) {
+                        timeLabel.text = dateFormatterPrint.string(from: sentMod)
+                    }
+                } else {
+                    print("There was an error decoding the date of birth.")
+                }
+            }
+            
             ApiHandler.getSingleEmail(messageID: mid) { (message) in
                 if let msg = message {
                     self.messageField.text = msg
@@ -79,6 +108,4 @@ class SingleEmailViewController: UIViewController {
             }
         }
     }
-
-
 }

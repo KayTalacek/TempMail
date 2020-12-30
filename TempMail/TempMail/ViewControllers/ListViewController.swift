@@ -44,7 +44,6 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         ProgressHUD.show()
         loadData()
         
-        
         refreshTable.tintColor = .blue
         refreshTable.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         emailsTable.addSubview(refreshTable) // not required when using UITableViewController
@@ -72,31 +71,14 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = SingleEmailViewController()
         vc.passData(data: allEmails[indexPath.row])
-//        vc.navigationItem.title = allEmails[indexPath.row].subject
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        let deleteMessage = UIContextualAction(style: .normal, title: "Urgentní\nzpráva OL") {
-//            [weak self] (action, view, completionHandler) in
-//                self?.swipeAction(value: "\nUrgentní zpráva OL")
-//                completionHandler(true)
-//        }
-//        deleteMessage.image = UIImage(systemName: "exclamationmark.bubble.fill")
-//        deleteMessage.backgroundColor = .systemRed
-//        return UISwipeActionsConfiguration(actions: [deleteMessage])
-//    }
-//    
-//    func swipeAction(value: String) {
-//        print(value)
-//    }
     
     @objc func refresh(_ sender: AnyObject) {
         loadData()
     }
     
     func loadData() {
-        
         ApiHandler.getEmails { (data) in
             if let code = data?.code {
                 if code != 200 {
@@ -120,14 +102,13 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             ProgressHUD.dismiss()
         }
-        
     }
     
     func expiredKey() {
         let error = UIAlertController(title: "Ouha!", message: "Vypadá to, že platnost emailu vypršela.", preferredStyle: .alert)
-        error.addAction(UIAlertAction(title: "Zrušit", style: .cancel, handler: { (_) in
+        error.addAction(UIAlertAction(title: "Zrušit", style: .default, handler: { (_) in
         }))
-        error.addAction(UIAlertAction(title: "Obnovit", style: .default, handler: { (_) in
+        error.addAction(UIAlertAction(title: "Obnovit", style: .cancel, handler: { (_) in
             ApiHandler.restoreEmail(email: DataHandler.getEmail()) { (data) in
             }
         }))

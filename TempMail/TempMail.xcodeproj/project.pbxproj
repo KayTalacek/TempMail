@@ -25,6 +25,8 @@
 		AB2BFA262598987500B878DA /* SingleEmailBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2BFA252598987400B878DA /* SingleEmailBody.swift */; };
 		AB4F233C259A3A3F00EC47DA /* SingleEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4F233B259A3A3F00EC47DA /* SingleEmailViewController.swift */; };
 		AB5302A8259CC7CA003A7036 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5302A7259CC7CA003A7036 /* AboutViewController.swift */; };
+		ABB53742259F87DD00D4DCB0 /* DateToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB53741259F87DD00D4DCB0 /* DateToString.swift */; };
+		ABB53746259F8E8200D4DCB0 /* StringToDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB53745259F8E8200D4DCB0 /* StringToDate.swift */; };
 		CAC7DEAC5D56B3C4FF8E6636 /* Pods_TempMail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749BE666F547C77BE62DE8FE /* Pods_TempMail.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +54,8 @@
 		AB2BFA252598987400B878DA /* SingleEmailBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEmailBody.swift; sourceTree = "<group>"; };
 		AB4F233B259A3A3F00EC47DA /* SingleEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEmailViewController.swift; sourceTree = "<group>"; };
 		AB5302A7259CC7CA003A7036 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		ABB53741259F87DD00D4DCB0 /* DateToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateToString.swift; sourceTree = "<group>"; };
+		ABB53745259F8E8200D4DCB0 /* StringToDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringToDate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,7 @@
 		AB20B55225939044000D131C /* TempMail */ = {
 			isa = PBXGroup;
 			children = (
+				ABB53740259F879E00D4DCB0 /* DateFormatters */,
 				AB126FCA259A7F5800F64A54 /* Cache Handler */,
 				AB20B5952593C1B2000D131C /* Data Handler */,
 				AB20B5812593B561000D131C /* Mapper Classes */,
@@ -173,6 +178,15 @@
 				AB20B5962593C1C0000D131C /* DataHandler.swift */,
 			);
 			path = "Data Handler";
+			sourceTree = "<group>";
+		};
+		ABB53740259F879E00D4DCB0 /* DateFormatters */ = {
+			isa = PBXGroup;
+			children = (
+				ABB53741259F87DD00D4DCB0 /* DateToString.swift */,
+				ABB53745259F8E8200D4DCB0 /* StringToDate.swift */,
+			);
+			path = DateFormatters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,8 +312,10 @@
 				AB20B55425939044000D131C /* AppDelegate.swift in Sources */,
 				AB20B5972593C1C0000D131C /* DataHandler.swift in Sources */,
 				AB20B57A2593AE9B000D131C /* DomainsViewCell.swift in Sources */,
+				ABB53742259F87DD00D4DCB0 /* DateToString.swift in Sources */,
 				AB20B59F2593DD2A000D131C /* ListViewController.swift in Sources */,
 				AB2BFA002594DEC900B878DA /* EmailsViewCell.swift in Sources */,
+				ABB53746259F8E8200D4DCB0 /* StringToDate.swift in Sources */,
 				AB4F233C259A3A3F00EC47DA /* SingleEmailViewController.swift in Sources */,
 				AB20B55625939044000D131C /* SceneDelegate.swift in Sources */,
 				AB5302A8259CC7CA003A7036 /* AboutViewController.swift in Sources */,

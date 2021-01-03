@@ -85,19 +85,27 @@ class SingleEmailViewController: UIViewController {
                 subjectLabel.text = "Předmět: \(subject)"
             }
             
+//            if let sentAtRaw = data.date {
+//                let dateFormatterGet = DateFormatter()
+//                dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//
+//                let dateFormatterPrint = DateFormatter()
+//                dateFormatterPrint.dateFormat = "HH:mm"
+//
+//                if let sent = dateFormatterGet.date(from: sentAtRaw) {
+//                    if let sentMod = Calendar.current.date(byAdding: .hour, value: -6, to: sent) {
+//                        timeLabel.text = dateFormatterPrint.string(from: sentMod)
+//                    }
+//                } else {
+//                    print("There was an error decoding the date of birth.")
+//                }
+//            }
+            
             if let sentAtRaw = data.date {
-                let dateFormatterGet = DateFormatter()
-                dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
-
-                let dateFormatterPrint = DateFormatter()
-                dateFormatterPrint.dateFormat = "HH:mm"
-
-                if let sent = dateFormatterGet.date(from: sentAtRaw) {
+                if let sent = StringToDateHelper.shared.formatDate(sentAtRaw) {
                     if let sentMod = Calendar.current.date(byAdding: .hour, value: -6, to: sent) {
-                        timeLabel.text = dateFormatterPrint.string(from: sentMod)
+                        timeLabel.text = DateToStringHelper.shared.formatDate(sentMod)
                     }
-                } else {
-                    print("There was an error decoding the date of birth.")
                 }
             }
             
